@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  createUserDocumentFromAuth,
   signInWithGoogle,
   signInWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
@@ -26,8 +25,7 @@ const SignInForm = () => {
     event.preventDefault();
     if (email && password?.length > 5) {
       try {
-        const response = await signInWithEmailAndPassword(email, password);
-        console.log(response);
+        await signInWithEmailAndPassword(email, password);
       } catch (error) {
         console.log("Error when Signing up the user", error.message);
       }
@@ -36,9 +34,7 @@ const SignInForm = () => {
   };
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGoogle("popup");
-    const userDocument = await createUserDocumentFromAuth(user);
-    console.log(userDocument);
+    await signInWithGoogle("popup");
   };
 
   return (

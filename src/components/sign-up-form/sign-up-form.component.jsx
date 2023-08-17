@@ -32,7 +32,8 @@ const SignUpForm = () => {
           email,
           password
         );
-        await createUserDocumentFromAuth({ ...user, displayName });
+        user.displayName = displayName;
+        await createUserDocumentFromAuth(user);
       } catch (error) {
         console.log("Error when Signing up the user", error.message);
       }
