@@ -9,15 +9,13 @@ const CartDropdown = () => {
   return (
     isCartOpen && (
       <div className="cart-dropdown-container">
-        {cartItems?.length ? (
-          cartItems.map((item) => (
-            <div key={item.id} className="cart-items">
-              <CartItem item={item} />
-            </div>
-          ))
-        ) : (
-          <span className="empty-message">CART STILL EMPTY</span>
-        )}
+        <div className="cart-items">
+          {cartItems?.length ? (
+            cartItems.map((item) => <CartItem key={item.id} item={item} />)
+          ) : (
+            <span className="empty-message">CART STILL EMPTY</span>
+          )}
+        </div>
         {cartItems?.length > 0 && <Button>CHECKOUT</Button>}
       </div>
     )
