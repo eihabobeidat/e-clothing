@@ -1,10 +1,22 @@
 import "./product-card.styles.scss";
 import Button from "../button/button.component";
 
+const buttonTitle = {
+  add: "Add to cart",
+  delete: "Delete from cart",
+};
+
 const ProductCard = ({
-  product: { name, price, imageUrl },
-  buttonTitle = "Add to cart",
+  product: { id, name, price, imageUrl },
+  buttonType = "add",
+  action,
 }) => {
+  const handleClick = () => {
+    if (action) {
+      action({ id, name, price, imageUrl });
+    }
+  };
+
   return (
     <div className="product-card-container">
       <img src={imageUrl} alt={name} />
@@ -12,7 +24,9 @@ const ProductCard = ({
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <Button buttonType={"inverted"}>{buttonTitle}</Button>
+      <Button buttonType={"inverted"} onClick={handleClick}>
+        {buttonTitle[buttonType]}
+      </Button>
     </div>
   );
 };
