@@ -4,6 +4,7 @@ import Button from "../button/button.component";
 const buttonTitle = {
   add: "Add to cart",
   delete: "Delete from cart",
+  navigate: "Check Products",
 };
 
 const ProductCard = ({
@@ -11,11 +12,10 @@ const ProductCard = ({
   buttonType = "add",
   action,
 }) => {
-  const handleClick = () => {
-    if (action) {
-      action({ id, name, price, imageUrl });
-    }
-  };
+  const handleClick = () =>
+    buttonType === "navigate"
+      ? action()
+      : action({ id, name, price, imageUrl });
 
   return (
     <div className="product-card-container">
@@ -24,9 +24,11 @@ const ProductCard = ({
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <Button buttonType={"inverted"} onClick={handleClick}>
-        {buttonTitle[buttonType]}
-      </Button>
+      {action && (
+        <Button buttonType={"inverted"} onClick={handleClick}>
+          {buttonTitle[buttonType]}
+        </Button>
+      )}
     </div>
   );
 };

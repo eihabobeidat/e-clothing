@@ -26,3 +26,22 @@
   background: linear-gradient(to right, #f2f2f3, #404347);
   border-radius: 4px;
 }
+
+.loading {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, black, rgb(63, 63, 63));
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: loadingAnimation 0.1s ease-in-out infinite;
+}
+
+@keyframes loadingAnimation {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0 100%;
+  }
+}

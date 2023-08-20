@@ -9,7 +9,17 @@ import {
   signOut as signOutFirebaseUser,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
+
 const signInMethods = {
   popup: signInWithPopup,
   redirect: signInWithRedirect,
@@ -36,6 +46,7 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
+
 /**
  * @param {'redirect' | 'popup'} method The method to google sign in popup or redirect
  */
@@ -43,6 +54,20 @@ export const signInWithGoogle = (method) =>
   signInMethods[method](auth, googleProvider);
 
 const db = getFirestore();
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  documentObject
+) => {
+  const collectionRefrence = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  documentObject.forEach((object) => {
+    const docRef = doc(collectionRefrence, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+  console.log("done");
+};
 
 export const createUserDocumentFromAuth = async (userAuth) => {
   if (!userAuth) return;
@@ -79,3 +104,14 @@ export const signOut = () => signOutFirebaseUser(auth);
 
 export const onAuthStateChangeListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const productsQuery = query(collectionRef);
+  const querySnapshot = await getDocs(productsQuery);
+
+  return querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    return { ...acc, [title.toLowerCase()]: items };
+  }, {});
+};

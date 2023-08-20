@@ -1,5 +1,4 @@
 import "./checkout.styles.scss";
-import { ReactComponent as Close } from "../../assets/close.svg";
 import { CartContext } from "../../contexts/cart.context";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +71,6 @@ const Checkout = () => {
           </div>
           <span className="price">{item.price}</span>
           <div className="remove-button" onClick={() => handleItemDelete(item)}>
-            {/* <Close /> */}
             &#10005;
           </div>
         </div>
