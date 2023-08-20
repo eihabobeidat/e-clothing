@@ -12,7 +12,9 @@ const CategoryPreview = ({ title, products }) => {
   return (
     <div className="category-preview-container">
       <h2>
-        <span onClick={handleRoute}>{title.toUpperCase()}</span>
+        <span className="titleLink" onClick={handleRoute}>
+          {title.toUpperCase()}
+        </span>
       </h2>
       <div className="preview">
         {products

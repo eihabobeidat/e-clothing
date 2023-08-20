@@ -17,7 +17,7 @@ const Category = () => {
   const deleteCartItem = (cartItem) => {
     setCartItems((state) => state.filter((item) => item.id !== cartItem.id));
   };
-  console.log(productsCategories, category);
+
   return productsCategories[category] ? (
     <Fragment>
       <h1 className="title">{category.toUpperCase()}</h1>
