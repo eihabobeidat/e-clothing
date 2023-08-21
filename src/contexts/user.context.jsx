@@ -9,7 +9,7 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
-export const USER_ACTION_TYPES = {
+const USER_ACTION_TYPES = {
   SET_CURRENT_USER: "SET_CURRENT_USER",
 };
 
