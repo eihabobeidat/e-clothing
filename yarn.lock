@@ -8502,6 +8502,11 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
+redux-persist@^6.0.0:
+  version "6.0.0"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
+  integrity sha1-tNKXL5hZWXwTDUDUsUb+zatRs6g=
+
 redux@^4.2.1:
   version "4.2.1"
   resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/redux/-/redux-4.2.1.tgz#c08f4306826c49b5e9dc901dee0452ea8fce6197"
