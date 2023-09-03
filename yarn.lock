@@ -1147,6 +1147,13 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/runtime@^7.6.3":
+  version "7.22.11"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@babel/runtime/-/runtime-7.22.11.tgz#7a9ba3bbe406ad6f9e8dd4da2ece453eb23a77a4"
+  integrity sha1-epuju+QGrW+ejdTaLs5FPrI6d6Q=
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/template@^7.22.5", "@babel/template@^7.3.3":
   version "7.22.5"
   resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@babel/template/-/template-7.22.5.tgz#0c8c4d944509875849bd0344ff0050756eefc6ec"
@@ -2172,6 +2179,50 @@
   integrity sha1-RPCvWSegRDaz9nquZ/AouIj/RSw=
   dependencies:
     merge-options "^3.0.4"
+
+"@redux-saga/core@^1.2.3":
+  version "1.2.3"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@redux-saga/core/-/core-1.2.3.tgz#882ed9ac58b5f42c6abb23349542315b871de305"
+  integrity sha1-iC7ZrFi19CxquyM0lUIxW4cd4wU=
+  dependencies:
+    "@babel/runtime" "^7.6.3"
+    "@redux-saga/deferred" "^1.2.1"
+    "@redux-saga/delay-p" "^1.2.1"
+    "@redux-saga/is" "^1.1.3"
+    "@redux-saga/symbols" "^1.1.3"
+    "@redux-saga/types" "^1.2.1"
+    redux "^4.0.4"
+    typescript-tuple "^2.2.1"
+
+"@redux-saga/deferred@^1.2.1":
+  version "1.2.1"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@redux-saga/deferred/-/deferred-1.2.1.tgz#aca373a08ccafd6f3481037f2f7ee97f2c87c3ec"
+  integrity sha1-rKNzoIzK/W80gQN/L37pfyyHw+w=
+
+"@redux-saga/delay-p@^1.2.1":
+  version "1.2.1"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@redux-saga/delay-p/-/delay-p-1.2.1.tgz#e72ac4731c5080a21f75b61bedc31cb639d9e446"
+  integrity sha1-5yrEcxxQgKIfdbYb7cMctjnZ5EY=
+  dependencies:
+    "@redux-saga/symbols" "^1.1.3"
+
+"@redux-saga/is@^1.1.3":
+  version "1.1.3"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@redux-saga/is/-/is-1.1.3.tgz#b333f31967e87e32b4e6b02c75b78d609dd4ad73"
+  integrity sha1-szPzGWfofjK05rAsdbeNYJ3UrXM=
+  dependencies:
+    "@redux-saga/symbols" "^1.1.3"
+    "@redux-saga/types" "^1.2.1"
+
+"@redux-saga/symbols@^1.1.3":
+  version "1.1.3"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@redux-saga/symbols/-/symbols-1.1.3.tgz#b731d56201719e96dc887dc3ae9016e761654367"
+  integrity sha1-tzHVYgFxnpbciH3DrpAW52FlQ2c=
+
+"@redux-saga/types@^1.2.1":
+  version "1.2.1"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/@redux-saga/types/-/types-1.2.1.tgz#9403f51c17cae37edf870c6bc0c81c1ece5ccef8"
+  integrity sha1-lAP1HBfK437fhwxrwMgcHs5czvg=
 
 "@remix-run/router@1.8.0":
   version "1.8.0"
@@ -8507,7 +8558,19 @@ redux-persist@^6.0.0:
   resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
   integrity sha1-tNKXL5hZWXwTDUDUsUb+zatRs6g=
 
-redux@^4.2.1:
+redux-saga@^1.2.3:
+  version "1.2.3"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/redux-saga/-/redux-saga-1.2.3.tgz#7362f78a0235868daf1210f8862a95906ac018a1"
+  integrity sha1-c2L3igI1ho2vEhD4hiqVkGrAGKE=
+  dependencies:
+    "@redux-saga/core" "^1.2.3"
+
+redux-thunk@^2.4.2:
+  version "2.4.2"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/redux-thunk/-/redux-thunk-2.4.2.tgz#b9d05d11994b99f7a91ea223e8b04cf0afa5ef3b"
+  integrity sha1-udBdEZlLmfepHqIj6LBM8K+l7zs=
+
+redux@^4.0.4, redux@^4.2.1:
   version "4.2.1"
   resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/redux/-/redux-4.2.1.tgz#c08f4306826c49b5e9dc901dee0452ea8fce6197"
   integrity sha1-wI9DBoJsSbXp3JAd7gRS6o/OYZc=
@@ -9652,6 +9715,25 @@ typedarray-to-buffer@^3.1.5:
   integrity sha1-qX7nqf9CaRufeD/xvFES/j/KkIA=
   dependencies:
     is-typedarray "^1.0.0"
+
+typescript-compare@^0.0.2:
+  version "0.0.2"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/typescript-compare/-/typescript-compare-0.0.2.tgz#7ee40a400a406c2ea0a7e551efd3309021d5f425"
+  integrity sha1-fuQKQApAbC6gp+VR79MwkCHV9CU=
+  dependencies:
+    typescript-logic "^0.0.0"
+
+typescript-logic@^0.0.0:
+  version "0.0.0"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/typescript-logic/-/typescript-logic-0.0.0.tgz#66ebd82a2548f2b444a43667bec120b496890196"
+  integrity sha1-ZuvYKiVI8rREpDZnvsEgtJaJAZY=
+
+typescript-tuple@^2.2.1:
+  version "2.2.1"
+  resolved "https://pkgs.dev.azure.com/Network-Global/NIPP/_packaging/nippdev/npm/registry/typescript-tuple/-/typescript-tuple-2.2.1.tgz#7d9813fb4b355f69ac55032e0363e8bb0f04dad2"
+  integrity sha1-fZgT+0s1X2msVQMuA2Pouw8E2tI=
+  dependencies:
+    typescript-compare "^0.0.2"
 
 unbox-primitive@^1.0.2:
   version "1.0.2"

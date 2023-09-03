@@ -3,40 +3,50 @@ import {
   legacy_createStore as createStore,
   applyMiddleware,
 } from "redux";
-// import logger from "redux-logger";
+import logger from "redux-logger";
+// import { loggerMiddleware } from "./logger/logger";
 import { persistStore, persistReducer } from "redux-persist";
 import { rootReducer } from "./root-reducer";
 import storage from "redux-persist/lib/storage";
 
-const loggerMiddleware = (store) => (next) => (action) => {
-  if (!action?.type) {
-    return next();
-  }
-  console.log("type:", action.type);
-  console.log("payload:", action.payload);
-  console.log("currentState:", store.getState());
-
-  next(action);
-
-  console.log("nextState:", store.getState());
-};
+// thunk or saga => use only one async sideEffect lib
+// import thunk from "redux-thunk";
+// thunk or saga => use only one async sideEffect lib
+import creatSagaMiddleware from "redux-saga";
+import { rootSaga } from "./root-saga";
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"], //which producer I do not want to persist
+  blacklist: ["user", "random"],
+  whitelist: [],
 };
+
+const sagaMiddleware = creatSagaMiddleware();
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleware = [loggerMiddleware];
+const middleware = [
+  //process.env.NODE_ENV !== "production" && loggerMiddleware,
+  logger,
+  // thunk,
+  sagaMiddleware,
+].filter(Boolean);
 
-const composedEnhancers = compose(applyMiddleware(...middleware));
+const composeEnhancer =
+  (process.env.NODE_ENV !== "production" &&
+    window &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+const composedEnhancers = composeEnhancer(applyMiddleware(...middleware));
 
 export const store = createStore(
   persistedReducer,
   undefined,
   composedEnhancers
 );
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);

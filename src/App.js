@@ -11,6 +11,7 @@ import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./store/user/user.action";
+import TestSpace from "./routes/test-space/test-space.component";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,10 @@ const App = () => {
       dispatch(setCurrentUser(user));
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      localStorage.clear();
+    };
     //eslint-disable-next-line
   }, []);
 
@@ -32,6 +36,7 @@ const App = () => {
         <Route path="shop/*" element={<Shop />} />
         <Route path="auth" element={<Authentication />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="test" element={<TestSpace />} />
       </Route>
     </Routes>
   );
