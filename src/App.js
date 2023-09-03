@@ -1,8 +1,5 @@
 import { useEffect } from "react";
-import {
-  onAuthStateChangeListener,
-  createUserDocumentFromAuth,
-} from "./utils/firebase/firebase.utils";
+import { getCurrentUser } from "./utils/firebase/firebase.utils";
 import { Routes, Route } from "react-router-dom";
 import Home from "./routes/home/home.component";
 import Navigation from "./routes/navigation/navigation.component";
@@ -15,17 +12,10 @@ import TestSpace from "./routes/test-space/test-space.component";
 
 const App = () => {
   const dispatch = useDispatch();
+  const saveLoggedInUser = (user) => dispatch(setCurrentUser(user));
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangeListener(async (user) => {
-      await createUserDocumentFromAuth(user);
-      dispatch(setCurrentUser(user));
-    });
-
-    return () => {
-      unsubscribe();
-      localStorage.clear();
-    };
+    getCurrentUser().then(saveLoggedInUser);
     //eslint-disable-next-line
   }, []);
 

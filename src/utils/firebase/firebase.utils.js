@@ -102,8 +102,11 @@ export const signInWithEmailAndPassword = async (email, password) =>
 
 export const signOut = () => signOutFirebaseUser(auth);
 
-export const onAuthStateChangeListener = (callback) =>
-  onAuthStateChanged(auth, callback);
+export const onAuthStateChangeListener = (
+  next,
+  error = (_) => {},
+  completed = (_) => {}
+) => onAuthStateChanged(auth, next, error, completed);
 
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
@@ -114,4 +117,21 @@ export const getCategoriesAndDocuments = async () => {
     const { title, items } = docSnapshot.data();
     return { ...acc, [title.toLowerCase()]: items };
   }, {});
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChangeListener(
+      async (user) => {
+        try {
+          await createUserDocumentFromAuth(user);
+          resolve(user);
+        } catch (error) {
+          reject(error);
+        }
+      },
+      (error) => reject(error),
+      () => unsubscribe()
+    );
+  });
 };
